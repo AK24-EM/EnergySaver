@@ -1,0 +1,293 @@
+[
+    {
+        "name": "Living Room AC",
+        "category": "AC",
+        "ratedPower": 1500,
+        "location": {
+            "room": "Living Room",
+            "floor": "Ground"
+        },
+        "automation": {
+            "dailyLimit": {
+                "enabled": true,
+                "threshold": 8,
+                "action": "notify"
+            },
+            "schedule": {
+                "enabled": true,
+                "startTime": "14:00",
+                "endTime": "22:00",
+                "action": "turn_on"
+            }
+        }
+    },
+    {
+        "name": "Bedroom AC",
+        "category": "AC",
+        "ratedPower": 1200,
+        "location": {
+            "room": "Master Bedroom",
+            "floor": "First"
+        },
+        "automation": {
+            "dailyLimit": {
+                "enabled": true,
+                "threshold": 10,
+                "action": "turn_off"
+            },
+            "schedule": {
+                "enabled": true,
+                "startTime": "22:00",
+                "endTime": "06:00",
+                "action": "turn_on"
+            }
+        }
+    },
+    {
+        "name": "Kitchen Refrigerator",
+        "category": "Refrigerator",
+        "ratedPower": 150,
+        "location": {
+            "room": "Kitchen",
+            "floor": "Ground"
+        },
+        "automation": {
+            "dailyLimit": {
+                "enabled": false,
+                "threshold": 0,
+                "action": "notify"
+            }
+        }
+    },
+    {
+        "name": "Washing Machine",
+        "category": "Washing Machine",
+        "ratedPower": 500,
+        "location": {
+            "room": "Utility Room",
+            "floor": "Ground"
+        },
+        "automation": {
+            "dailyLimit": {
+                "enabled": true,
+                "threshold": 2,
+                "action": "notify"
+            },
+            "schedule": {
+                "enabled": true,
+                "startTime": "07:00",
+                "endTime": "19:00",
+                "action": "turn_on"
+            }
+        }
+    },
+    {
+        "name": "Living Room TV",
+        "category": "TV",
+        "ratedPower": 120,
+        "location": {
+            "room": "Living Room",
+            "floor": "Ground"
+        },
+        "automation": {
+            "dailyLimit": {
+                "enabled": true,
+                "threshold": 6,
+                "action": "notify"
+            }
+        }
+    },
+    {
+        "name": "Bedroom TV",
+        "category": "TV",
+        "ratedPower": 80,
+        "location": {
+            "room": "Master Bedroom",
+            "floor": "First"
+        }
+    },
+    {
+        "name": "Living Room Lights",
+        "category": "Light",
+        "ratedPower": 60,
+        "location": {
+            "room": "Living Room",
+            "floor": "Ground"
+        },
+        "automation": {
+            "schedule": {
+                "enabled": true,
+                "startTime": "18:00",
+                "endTime": "23:00",
+                "action": "turn_on"
+            }
+        }
+    },
+    {
+        "name": "Bedroom Lights",
+        "category": "Light",
+        "ratedPower": 40,
+        "location": {
+            "room": "Master Bedroom",
+            "floor": "First"
+        },
+        "automation": {
+            "schedule": {
+                "enabled": true,
+                "startTime": "18:00",
+                "endTime": "22:00",
+                "action": "turn_on"
+            }
+        }
+    },
+    {
+        "name": "Kitchen Lights",
+        "category": "Light",
+        "ratedPower": 50,
+        "location": {
+            "room": "Kitchen",
+            "floor": "Ground"
+        }
+    },
+    {
+        "name": "Ceiling Fan - Living Room",
+        "category": "Fan",
+        "ratedPower": 75,
+        "location": {
+            "room": "Living Room",
+            "floor": "Ground"
+        }
+    },
+    {
+        "name": "Ceiling Fan - Bedroom",
+        "category": "Fan",
+        "ratedPower": 75,
+        "location": {
+            "room": "Master Bedroom",
+            "floor": "First"
+        }
+    },
+    {
+        "name": "Water Heater",
+        "category": "Heater",
+        "ratedPower": 2000,
+        "location": {
+            "room": "Bathroom",
+            "floor": "Ground"
+        },
+        "automation": {
+            "dailyLimit": {
+                "enabled": true,
+                "threshold": 2,
+                "action": "turn_off"
+            },
+            "schedule": {
+                "enabled": true,
+                "startTime": "06:00",
+                "endTime": "08:00",
+                "action": "turn_on"
+            }
+        }
+    },
+    {
+        "name": "Microwave Oven",
+        "category": "Microwave",
+        "ratedPower": 1000,
+        "location": {
+            "room": "Kitchen",
+            "floor": "Ground"
+        },
+        "automation": {
+            "dailyLimit": {
+                "enabled": true,
+                "threshold": 1,
+                "action": "notify"
+            }
+        }
+    },
+    {
+        "name": "Desktop Computer",
+        "category": "Computer",
+        "ratedPower": 300,
+        "location": {
+            "room": "Study Room",
+            "floor": "First"
+        },
+        "automation": {
+            "dailyLimit": {
+                "enabled": true,
+                "threshold": 8,
+                "action": "notify"
+            }
+        }
+    },
+    {
+        "name": "WiFi Router",
+        "category": "Other",
+        "ratedPower": 15,
+        "location": {
+            "room": "Living Room",
+            "floor": "Ground"
+        }
+    },
+    {
+        "name": "Electric Kettle",
+        "category": "Kitchen",
+        "ratedPower": 1500,
+        "location": {
+            "room": "Kitchen",
+            "floor": "Ground"
+        }
+    },
+    {
+        "name": "Dishwasher",
+        "category": "Kitchen",
+        "ratedPower": 1800,
+        "location": {
+            "room": "Kitchen",
+            "floor": "Ground"
+        },
+        "automation": {
+            "schedule": {
+                "enabled": true,
+                "startTime": "22:00",
+                "endTime": "23:30",
+                "action": "turn_on"
+            }
+        }
+    },
+    {
+        "name": "Gaming Console",
+        "category": "Entertainment",
+        "ratedPower": 150,
+        "location": {
+            "room": "Living Room",
+            "floor": "Ground"
+        },
+        "automation": {
+            "dailyLimit": {
+                "enabled": true,
+                "threshold": 4,
+                "action": "notify"
+            }
+        }
+    },
+    {
+        "name": "Sound System",
+        "category": "Entertainment",
+        "ratedPower": 200,
+        "location": {
+            "room": "Living Room",
+            "floor": "Ground"
+        }
+    },
+    {
+        "name": "Iron Box",
+        "category": "Other",
+        "ratedPower": 1000,
+        "location": {
+            "room": "Utility Room",
+            "floor": "Ground"
+        }
+    }
+]
