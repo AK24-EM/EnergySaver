@@ -31,7 +31,8 @@ const io = new Server(server, {
       "http://localhost:5173",
       "http://localhost:5174",
       "http://localhost:5175",
-      "https://energy-saver-gmj6.vercel.app"
+      "https://energy-saver-gmj6.vercel.app",
+      "https://energy-saver-yxkq-fo2oq46vr-2024aayushk-5184s-projects.vercel.app"
     ],
     methods: ["GET", "POST"],
     credentials: true
@@ -45,7 +46,8 @@ app.use(cors({
     'http://localhost:5173',
     'http://localhost:5174',
     'http://localhost:5175',
-    'https://energy-saver-gmj6.vercel.app'
+    'https://energy-saver-gmj6.vercel.app',
+    'https://energy-saver-yxkq-fo2oq46vr-2024aayushk-5184s-projects.vercel.app'
   ],
   credentials: true
 }));
