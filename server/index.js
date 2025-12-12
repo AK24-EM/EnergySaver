@@ -46,6 +46,9 @@ const io = new Server(server, {
   }
 });
 
+// Trust proxy (required for Render/Heroku/Railway)
+app.set('trust proxy', 1);
+
 // Security middleware
 app.use(helmet());
 app.use(cors({
