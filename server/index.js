@@ -25,6 +25,12 @@ import logger from './utils/logger.js';
 
 const app = express();
 const server = createServer(app);
+
+// Request logger middleware
+app.use((req, res, next) => {
+  logger.info(`Incoming request: ${req.method} ${req.url}`);
+  next();
+});
 const io = new Server(server, {
   cors: {
     origin: function (origin, callback) {
@@ -125,7 +131,26 @@ global.io = io;
 // Initialize simulation
 initializeSimulation(io);
 
+
+// 404 Handler
+app.use((req, res) => {
+  logger.warn(`404 Not Found: ${req.method} ${req.url}`);
+  res.status(404).json({ error: `Route not found: ${req.method} ${req.url}` });
+});
+
 const PORT = process.env.PORT || 3001;
 server.listen(PORT, () => {
   logger.info(`Server running on port ${PORT}`);
+
+  // Print registered routes
+  logger.info('Registered Routes:');
+  app._router.stack.forEach(function (r) {
+    if (r.route && r.route.path) {
+      logger.info(r.route.path)
+    } else if (r.name === 'router') {
+      // This is a mounted router
+      const regex = r.regexp.toString();
+      logger.info(`Router mounted: ${regex}`);
+    }
+  });
 });
