@@ -40,8 +40,8 @@ const io = new Server(server, {
         "http://localhost:5175"
       ];
 
-      // Allow all Vercel URLs
-      if (!origin || allowedOrigins.includes(origin) || origin.includes('.vercel.app')) {
+      // Allow all Vercel and Netlify URLs
+      if (!origin || allowedOrigins.includes(origin) || origin.includes('.vercel.app') || origin.includes('.netlify.app')) {
         callback(null, true);
       } else {
         callback(new Error('Not allowed by CORS'));
@@ -65,8 +65,8 @@ app.use(cors({
       'http://localhost:5175'
     ];
 
-    // Allow all Vercel URLs (production and preview)
-    if (!origin || allowedOrigins.includes(origin) || origin.includes('.vercel.app')) {
+    // Allow all Vercel and Netlify URLs (production and preview)
+    if (!origin || allowedOrigins.includes(origin) || origin.includes('.vercel.app') || origin.includes('.netlify.app')) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));
