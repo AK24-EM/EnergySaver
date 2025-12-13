@@ -26,11 +26,41 @@ import logger from './utils/logger.js';
 const app = express();
 const server = createServer(app);
 
-// Request logger middleware
+// Trust proxy (required for Render/Heroku/Railway)
+app.set('trust proxy', 1);
+
+// DEBUG LOGGING
 app.use((req, res, next) => {
-  logger.info(`Incoming request: ${req.method} ${req.url}`);
+  logger.info(`Incoming request: ${req.method} ${req.url} | Origin: ${req.headers.origin}`);
   next();
 });
+
+// CORS Configuration (Moved to top)
+const corsOptions = {
+  origin: function (origin, callback) {
+    const allowedOrigins = [
+      'http://localhost:5173',
+      'http://localhost:5174',
+      'http://localhost:5175'
+    ];
+
+    // Log the check
+    logger.info(`Checking CORS for origin: ${origin}`);
+
+    // Allow all Vercel and Netlify URLs (production and preview)
+    if (!origin || allowedOrigins.includes(origin) || origin.includes('.vercel.app') || origin.includes('.netlify.app')) {
+      callback(null, true);
+    } else {
+      logger.error(`BLOCKED CORS for origin: ${origin}`);
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true
+};
+
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions)); // Enable preflight for all routes
+app.use(helmet());
 const io = new Server(server, {
   cors: {
     origin: function (origin, callback) {
@@ -52,30 +82,7 @@ const io = new Server(server, {
   }
 });
 
-// Trust proxy (required for Render/Heroku/Railway)
-app.set('trust proxy', 1);
-
-// Security middleware
-app.use(helmet());
-app.use(cors({
-  origin: function (origin, callback) {
-    const allowedOrigins = [
-      'http://localhost:5173',
-      'http://localhost:5174',
-      'http://localhost:5175'
-    ];
-
-    // Allow all Vercel and Netlify URLs (production and preview)
-    if (!origin || allowedOrigins.includes(origin) || origin.includes('.vercel.app') || origin.includes('.netlify.app')) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true
-}));
-
-// Rate limiting
+// Rate limiting (moved up)
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 1000, // limit each IP to 1000 requests per windowMs
