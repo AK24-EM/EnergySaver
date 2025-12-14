@@ -116,7 +116,12 @@ app.use('/api/comparison', authMiddleware, comparisonRoutes);
 
 // Health check
 app.get('/health', (req, res) => {
-  res.json({ status: 'OK', timestamp: new Date().toISOString() });
+  res.json({
+    status: 'OK',
+    timestamp: new Date().toISOString(),
+    mongoStatus: mongoose.connection.readyState, // 0: disconnected, 1: connected, 2: connecting, 3: disconnecting
+    mongoHost: mongoose.connection.host
+  });
 });
 
 // Socket.IO connection handling
