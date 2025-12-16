@@ -27,7 +27,14 @@ api.interceptors.request.use(
 
 // Response interceptor to handle errors
 api.interceptors.response.use(
-  (response) => response.data,
+  (response) => {
+    // For blob responses (PDF, Excel), return the full response
+    if (response.config.responseType === 'blob') {
+      return response.data;
+    }
+    // For regular JSON responses, extract data
+    return response.data;
+  },
   (error) => {
     if (error.response?.status === 401) {
       localStorage.removeItem('token');
