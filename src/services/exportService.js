@@ -1,36 +1,26 @@
-import axios from 'axios';
-
-const API_BASE_URL = 'http://localhost:3001/api';
+import api from './api';
 
 /**
  * Export Service - API calls for report exports
- * Uses axios directly for blob downloads to avoid interceptor issues
+ * Uses shared API instance with environment-based URL
  */
-
-const getAuthHeaders = () => {
-    const token = localStorage.getItem('token');
-    return token ? { Authorization: `Bearer ${token}` } : {};
-};
 
 export const exportService = {
     // Get export info/preview
     getExportInfo: async (period = 'monthly') => {
-        const response = await axios.get(`${API_BASE_URL}/export/info?period=${period}`, {
-            headers: getAuthHeaders()
-        });
-        return response.data;
+        const response = await api.get(`/export/info?period=${period}`);
+        return response;
     },
 
     // Download PDF report
     downloadPDF: async (period = 'monthly') => {
-        const response = await axios.get(`${API_BASE_URL}/export/pdf?period=${period}`, {
-            headers: getAuthHeaders(),
+        const response = await api.get(`/export/pdf?period=${period}`, {
             responseType: 'blob',
             timeout: 60000 // 60 second timeout for large reports
         });
 
         // Create download link
-        const blob = new Blob([response.data], { type: 'application/pdf' });
+        const blob = new Blob([response], { type: 'application/pdf' });
         const url = window.URL.createObjectURL(blob);
         const link = document.createElement('a');
         link.href = url;
@@ -50,14 +40,13 @@ export const exportService = {
 
     // Download XLSX data pack
     downloadXLSX: async (period = 'monthly') => {
-        const response = await axios.get(`${API_BASE_URL}/export/xlsx?period=${period}`, {
-            headers: getAuthHeaders(),
+        const response = await api.get(`/export/xlsx?period=${period}`, {
             responseType: 'blob',
             timeout: 60000
         });
 
         // Create download link
-        const blob = new Blob([response.data], {
+        const blob = new Blob([response], {
             type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
         });
         const url = window.URL.createObjectURL(blob);
